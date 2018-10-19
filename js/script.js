@@ -5,8 +5,15 @@ FSJS project 2 - List Filter and Pagination
 
 // Add variables that store DOM elements you will need to reference and/or manipulate
 const list = document.querySelectorAll('.student-item');
+const pageHeader = document.querySelector('.page-header');
 const page = Math.floor(list.length/10);
-
+const pageDiv = document.querySelector('.page');
+const input = document.createElement('input');
+const div = document.createElement('div');
+const ul = document.createElement('ul');
+const li = document.createElement('li');
+const a = document.createElement('a');
+const button = document.createElement('button');
 
 
 // Create a function to hide all of the items in the list excpet for the ten you want to show
@@ -19,17 +26,22 @@ const showPage = (list,page) => {
       list[i].style.display = 'none';
     }
   }
-
 }
-
 showPage(list,page);
 
+// Create and append search bar
+pageHeader.appendChild(input);
+input.style.type ='text';
+input.setAttribute('placeholder','Search for students...');
 
 // Create and append the pagination links - Creating a function that can do this is a good approach
-
-const appendPageLinks = () => {
-  
-}
+const appendPageLinks = (list) => {
+  pageDiv.appendChild(div);
+  div.className = 'pagination';
+  div.appendChild(ul);
+  ul.appendChild(li);
+  }
+appendPageLinks(list);
 
 
 // Add functionality to the pagination buttons so that they show and hide the correct items
