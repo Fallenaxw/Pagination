@@ -6,7 +6,7 @@ FSJS project 2 - List Filter and Pagination
 // Add variables that store DOM elements you will need to reference and/or manipulate
 const list = document.querySelectorAll('.student-item');
 const pageHeader = document.querySelector('.page-header');
-const page = Math.floor(list.length/10);
+const page = Math.ceil(list.length/10);
 const pageDiv = document.querySelector('.page');
 const input = document.createElement('input');
 const div = document.createElement('div');
@@ -39,7 +39,11 @@ const appendPageLinks = (list) => {
   pageDiv.appendChild(div);
   div.className = 'pagination';
   div.appendChild(ul);
-  ul.appendChild(li);
+  for (let i = 1; i <= page; i++) {
+    let li = document.createElement('li');
+    li.innerHTML = '<a href="#">' + i + '</a>';
+    ul.appendChild(li);
+    }
   }
 appendPageLinks(list);
 
