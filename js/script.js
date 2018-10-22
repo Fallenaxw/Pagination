@@ -3,7 +3,7 @@ Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
 ******************************************/
 
-// Add variables that store DOM elements you will need to reference and/or manipulate
+// Adde variables that store DOM elements needed to reference and/or manipulate the page
 const list = document.querySelectorAll('.student-item');
 const pageDiv = document.querySelector('.page');
 const div = document.createElement('div');
@@ -12,8 +12,7 @@ const pages = Math.ceil(list.length/10);
 
 
 
-// Create a function to hide all of the items in the list excpet for the ten you want to show
-// Tip: Keep in mind that with a list of 54 studetns, the last page will only display four
+// Created a function to hide all of the items in the list except for the ten on the starting page 
 const showPage = (list,page) => {
    for (let i = 0; i < list.length; i++) {
     if (i >= (page *10)-10 & i <= (page*10)-1) {
@@ -26,7 +25,7 @@ const showPage = (list,page) => {
 }
 showPage(list,1);
 
-// Create and append the pagination links - Creating a function that can do this is a good approach
+// Created and appended the pagination links and set the active class on the first link
 const appendPageLinks = (list) => {
   pageDiv.appendChild(div);
   div.className = 'pagination';
@@ -39,33 +38,17 @@ const appendPageLinks = (list) => {
     a.textContent = `${i}`;
     li.appendChild(a);
     }
-    const active = document.querySelectorAll('div.pagination li a');
-    active[0].className = 'active';
-    // Add functionality to the pagination buttons so that they show and hide the correct items
-    // Tip: If you created a function above to show/hide list items, it could be helpful here
-
-    active[0].addEventListener('click', (e) => {
-      showPage(list,1);
-    });
-
-    active[1].addEventListener('click', (e) => {
-      showPage(list,2);
-    });
-
-    active[2].addEventListener('click', (e) => {
-      showPage(list,3);
-    });
-
-    active[3].addEventListener('click', (e) => {
-      showPage(list,4);
-    });
-
-    active[4].addEventListener('click', (e) => {
-      showPage(list,5);
-    });
-
-    active[5].addEventListener('click', (e) => {
-      showPage(list,6);
+    const setActive = document.querySelectorAll('div.pagination li a');
+    setActive[0].className = 'active';
+    // Added functionality to the pagination buttons so that they show and hide the correct students when the corresponding link is clicke
+     div.addEventListener('click', (e) => {
+      for (let i = 0; i < pages; i++) {
+        setActive[i].classList.remove('active');
+        if (e.target.tagName === 'A') {
+          showPage(list,e.target.textContent);
+          e.target.className = 'active';
+        } 
+      }     
     });
   }
 appendPageLinks(list);
