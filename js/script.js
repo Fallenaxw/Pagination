@@ -6,12 +6,22 @@ FSJS project 2 - List Filter and Pagination
 // Adde variables that store DOM elements needed to reference and/or manipulate the page
 const list = document.querySelectorAll('.student-item');
 const pageDiv = document.querySelector('.page');
+const pageHeader = document.querySelector('.page-header');
 const div = document.createElement('div');
+const searchDiv = document.createElement('div');
 const ul = document.createElement('ul');
 const pages = Math.ceil(list.length/10);
+const input = document.createElement('input');
+const button = document.createElement('button');
 
 
-
+//Create and append search textbox to page 
+pageHeader.appendChild(searchDiv);
+searchDiv.className = 'student-search';
+searchDiv.appendChild(input);
+searchDiv.appendChild(button);
+input.setAttribute('placeholder','Search for students...');
+button.textContent = 'Search';
 // Created a function to hide all of the items in the list except for the ten on the starting page 
 const showPage = (list,page) => {
    for (let i = 0; i < list.length; i++) {
