@@ -27,29 +27,7 @@ button.setAttribute('class','button');
 input.setAttribute('placeholder','Search for students...');
 button.textContent = 'Search';
 
-// Add functionality to search bar
-// Grab user input
-// Grab the names from the student list
-// Loop over each name in the student list
-  // If the user input matches anything from the student list
-    // Display match
-    // Else display nothing
 
-form.addEventListener('keyup', (e) => {
-  e.preventDefault();
-  const search = input.value.toLowerCase();
-  for(let i = 0; i < list.length; i++) {
-    let check = list[i].textContent.toLowerCase();
-    if (check.indexOf(search) != -1) {
-      list[i].style.display = 'block';
-    }else {
-      list[i].style.display = 'none';
-    }
-  }
-
-  
-  
-});
 // Created a function to hide all of the items in the list except for the ten on the starting page 
 
 const showPage = (list,page) => {
@@ -95,6 +73,25 @@ const appendPageLinks = (list) => {
   }
 appendPageLinks(list);
 
+// Add functionality to search bar
+// Grab user input
+// Grab the names from the student list
+// Loop over each name in the student list
+  // If the user input matches anything from the student list
+    // Display match
+    // Else display nothing
 
+    form.addEventListener('keyup', (e) => {
+      e.preventDefault();
+      const search = input.value.toLowerCase();
+      for(let i = 0; i < list.length; i++) {
+        let check = list[i].textContent.toLowerCase();
+        if (check.indexOf(search) != -1) {
+          list[i].style.display = 'block';
+        } else {
+          list[i].style.display = 'none';
+        }
+      }
+    });
 
 
